@@ -17,11 +17,22 @@ class TestingController extends Controller
             $file = Storage::put('public', $request->file);
             $path = Storage::url($file);
             if ($file) {
-                return response()->json('file stored successfully: ' . $path, 200);
+                return response()->json(
+                    [
+                        'msg' => 'file stored successfully',
+                        'filePath' => asset($path)
+                    ],
+                    200
+                );
             } else {
-                return response()->json('fuck you ', 400);
+                return response()->json(['msg'=>'fuck of '], 400);
             }
+        }else{
+            return response()->json(['msg'=>'fuck of '], 400);
+
         }
+
+
     }
 
 
